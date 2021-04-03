@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hebr.shading.mapper.OrderMapper">
+
+    <insert id="insert">
+        insert into `order` (id,name,age) value (#{o.id},#{o.name},#{o.age})
+    </insert>
+    <insert id="insert1">
+        insert into `user` (id,name,age,yearmonth) value (#{u.id},#{u.name},#{u.age},#{u.yearmonth})
+    </insert>
+    <select id="selectList" resultType="com.hebr.shading.entity.Order">
+        select * from `order`
+    </select>
+</mapper>

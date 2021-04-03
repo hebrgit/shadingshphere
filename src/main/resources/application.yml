@@ -1,0 +1,14 @@
+server:
+  port: 8081
+
+spring:
+  profiles:
+    active: masterSlave
+  application:
+    name: shading
+  main:
+    allow-bean-definition-overriding: true
+
+mybatis:
+  type-aliases-package: com.hebr.shading.mapper
+  mapper-locations: classpath:mapper/*.xml

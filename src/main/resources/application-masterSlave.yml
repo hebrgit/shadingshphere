@@ -1,0 +1,55 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: shading
+  main:
+    allow-bean-definition-overriding: true
+  shardingsphere:
+    #改参数配置，显示sql
+    props:
+      sql:
+        show: true
+    datasource:
+#      common:
+#        type: com.alibaba.druid.pool.DruidDataSource
+#        driver-class-name: com.mysql.jdbc.Driver
+      names: db1,db2,db3
+      db1:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://8.140.168.229:3306/db2021?useUnicode=true&characterEncoding=utf-8&useSSL=false&autoReconnect=true&failOverReadOnly=false
+        username: root
+        password: 123456
+        maxPoolSize: 100
+        minPoolSize: 5
+      db2:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://8.140.168.229:8888/db2021?useUnicode=true&characterEncoding=utf-8&useSSL=false&autoReconnect=true&failOverReadOnly=false
+        username: root
+        password: 123456
+        maxPoolSize: 100
+        minPoolSize: 5
+      db3:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://8.140.168.229:9999/db2021?useUnicode=true&characterEncoding=utf-8&useSSL=false&autoReconnect=true&failOverReadOnly=false
+        username: root
+        password: 123456
+        maxPoolSize: 100
+        minPoolSize: 5
+    masterslave:
+      name: ds
+      master-data-source-name: db1
+      slave-data-source-names:
+        - db2
+        - db3
+      load-balance-algorithm-type: ROUND_ROBIN
+
+
+
+
+mybatis:
+  type-aliases-package: com.hebr.shading.mapper
+  mapper-locations: classpath:mapper/*.xml
